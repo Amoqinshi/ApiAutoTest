@@ -6,16 +6,16 @@
 @Author ：琴师
 @Date ：2022/5/4 4:01 下午 
 '''
-import json
-
-import requests,yaml,os
+import os,json,allure
 from utils.RequestsUtil import RequestLogic
 from utils.YamlUtil import YamlReader
 from utils.AssertUtil import Assert
 from utils.LogUtil import my_log
 from config.Conf import ConfigYaml
+from common.ExcelData import CaseData
+from common import ExcelConfig
 from config import Conf
-from common.Base import init_db
+from common import Base
 import pytest
 
 
@@ -52,7 +52,11 @@ class Test(object):
 
 
 if __name__=="__main__":
-    pytest.main(["test_Login.py"])
+    report_path = Conf.get_report_path() + os.sep + "result"
+    report_html_path = Conf.get_report_path() + os.sep + "html"
+    pytest.main(["-s", "test_Login11.py", "--alluredir", report_path])
+    Base.allure_report(report_path, report_html_path)
+    Base.send_email(title="接口测试报告", content=report_html_path)
 # def test_Loginsend():
 #     """
 #     Case--密码登录(phone正常,pwd正常)
