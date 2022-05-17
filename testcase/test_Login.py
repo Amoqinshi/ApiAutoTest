@@ -57,26 +57,5 @@ if __name__=="__main__":
     pytest.main(["-s", "test_Login11.py", "--alluredir", report_path])
     Base.allure_report(report_path, report_html_path)
     Base.send_email(title="接口测试报告", content=report_html_path)
-# def test_Loginsend():
-#     """
-#     Case--密码登录(phone正常,pwd正常)
-#     """
-#     request = RequestLogic()
-#     conf = ConfigYaml()
-#     url = conf.get_conf_UmsReleaseUrl() + "/connect/oauth/tokens"
-#     headers = {"Content-Type":"application/json","x-biz-code":"1"}
-#     data = {"grant_type":"password","client_id":"gaodingx","client_secret":"7da458070e57b98e11d00d9286f23537","os":"mac os","mobile_area_code":86,"mobile":"15927101278","password":"000000"}
-#     r = request.request_post(url=url,json=data,headers=headers)
-#     print(r.get("body"))
-#     conn = init_db("DB_Test")
-#     res = conn.Select_Sql("select id,username from tb_users where username='python'")
-#
-#     Assert().assert_code(r.get("body").get("code"),res.get("id"))
 
-
-#
-#
-# if __name__=="__main__":
-#     pytest.main(["test_Login.py"])
-    # test_Loginsend()
 
